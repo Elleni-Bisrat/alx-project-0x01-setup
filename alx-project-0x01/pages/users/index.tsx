@@ -4,16 +4,12 @@ import UserModal from "@/components/common/UserModal";
 import { UserProps, UserData } from "@/interfaces";
 import { useState } from "react";
 
-const Users: React.FC<{ users: UserProps[] }> = ({ users }) => {
+const Users: React.FC<{ posts: UserProps[] }> = ({ posts }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [userList, setUserList] = useState<UserProps[]>(users);
+  const [userList, setUserList] = useState<UserProps[]>(posts);
 
   const handleAddUser = (newUser: UserData) => {
-    // Convert UserData to UserProps by adding an id
-    const userWithId: UserProps = {
-      ...newUser,
-      id: userList.length + 1,
-    };
+    const userWithId: UserProps = { ...newUser, id: userList.length + 1 };
     setUserList([...userList, userWithId]);
   };
 
@@ -54,7 +50,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      users, // Make sure the prop is "users" and not "posts"
+      posts: users,
     },
   };
 }
