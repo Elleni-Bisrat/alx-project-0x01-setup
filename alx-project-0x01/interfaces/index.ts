@@ -1,3 +1,4 @@
+// Post interfaces (from task 4)
 export interface PostProps {
   userId: number;
   id: number;
@@ -17,11 +18,14 @@ export interface PostModalProps {
   onSubmit: (post: PostData) => void;
 }
 
-export interface UserData {
-  id?: number;
+// User interfaces (for task 3 & 5)
+export interface UserProps {
+  id: number;
   name: string;
   username: string;
   email: string;
+  phone: string;
+  website: string;
   address: {
     street: string;
     suite: string;
@@ -32,8 +36,30 @@ export interface UserData {
       lng: string;
     };
   };
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+}
+
+export interface UserData {
+  id?: number;
+  name: string;
+  username: string;
+  email: string;
   phone: string;
   website: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
   company: {
     name: string;
     catchPhrase: string;
@@ -45,4 +71,3 @@ export interface UserModalProps {
   onClose: () => void;
   onSubmit: (user: UserData) => void;
 }
-export type UserProps = UserData;

@@ -1,16 +1,20 @@
-
 import Header from "@/components/layout/Header";
 import UserCard from "@/components/common/UserCard";
 import UserModal from "@/components/common/UserModal";
-import { UserProps } from "@/interfaces";
+import { UserProps, UserData } from "@/interfaces";
 import { useState } from "react";
 
-const Users: React.FC<{ posts: UserProps[] }> = ({ posts }) => {
+const Users: React.FC<{ users: UserProps[] }> = ({ users }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [newUser, setNewUser] = useState<UserProps | null>(null);
+  const [userList, setUserList] = useState<UserProps[]>(users);
 
-  const handleAddUser = (user: UserProps) => {
-    setNewUser(user);
+  const handleAddUser = (newUser: UserData) => {
+    // Convert UserData to UserProps by adding an id
+    const userWithId: UserProps = {
+      ...newUser,
+      id: userList.length + 1,
+    };
+    setUserList([...userList, userWithId]);
   };
 
   return (
@@ -28,7 +32,7 @@ const Users: React.FC<{ posts: UserProps[] }> = ({ posts }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {posts.map((user) => (
+          {userList.map((user) => (
             <UserCard key={user.id} {...user} />
           ))}
         </div>
@@ -50,7 +54,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: users,
+      users, // Make sure the prop is "users" and not "posts"
     },
   };
 }

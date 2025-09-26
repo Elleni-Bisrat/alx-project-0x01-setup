@@ -13,11 +13,9 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
     company: { name: "", catchPhrase: "", bs: "" },
   });
 
-  // Proper type for input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    // handle nested fields like address.street or company.name
     if (name.startsWith("address.")) {
       const key = name.split(".")[1];
       setUser((prev) => ({
@@ -40,6 +38,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
     onSubmit(user);
     onClose();
   };
+  
 
   return (
     <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
@@ -79,7 +78,6 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          {/* Add more fields like address, phone, company as needed */}
           <div className="flex justify-between items-center">
             <button
               type="button"
