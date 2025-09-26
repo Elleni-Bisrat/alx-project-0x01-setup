@@ -4,13 +4,24 @@ export interface PostProps {
   title: string;
   body: string;
 }
-export interface UserProps {
-  id: number;
+
+export interface PostData {
+  userId: number;
+  id?: number;
+  title: string;
+  body: string;
+}
+
+export interface PostModalProps {
+  onClose: () => void;
+  onSubmit: (post: PostData) => void;
+}
+
+export interface UserData {
+  id?: number;
   name: string;
   username: string;
   email: string;
-  phone: string;
-  website: string;
   address: {
     street: string;
     suite: string;
@@ -21,6 +32,8 @@ export interface UserProps {
       lng: string;
     };
   };
+  phone: string;
+  website: string;
   company: {
     name: string;
     catchPhrase: string;
@@ -28,17 +41,8 @@ export interface UserProps {
   };
 }
 
-// For adding a new user dynamically
-export interface UserData {
-  id?: number;
-  name: string;
-  username: string;
-  email: string;
-  phone: string;
-  website: string;
-}
-
 export interface UserModalProps {
   onClose: () => void;
   onSubmit: (user: UserData) => void;
 }
+export type UserProps = UserData;
